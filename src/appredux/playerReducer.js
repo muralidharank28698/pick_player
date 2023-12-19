@@ -4,13 +4,11 @@ import {
 	FETCH_PLAYERS_REQUEST
 } from "./playerType"
 
-
 const initialState = {
 	loading: false,
 	players: [],
 	error: ''
 };
-
 
 function playerReducer(state = initialState, action) {
 	console.log(action);

@@ -4,16 +4,12 @@ import store from "../appredux/store";
 
 function FilteredPlayer() {
 
-
     const storeData = store.getState()?.players;
-
     const filterPlayers = storeData?.filter(item => {
         return item.event_player_credit > 8.5 || (item.role === "Wicket-Keeper" && item?.event_player_credit === 8);
     });
 
-
     return (
-
         <div>
             <h1>List of Filtered Players</h1>
             <table border={1}>
@@ -45,13 +41,9 @@ function FilteredPlayer() {
                         </tr>
                     )
                 }
-
             </table>
-
-
         </div>
     )
 }
-
 
 export default FilteredPlayer;

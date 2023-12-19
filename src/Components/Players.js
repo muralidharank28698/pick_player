@@ -12,20 +12,10 @@ import AllRounders from './AllRounders';
 import WicketKeeper from "./WicketKeeper";
 
 function Players({ playersData, fetchPlayers }) {
-  
-  // const [showFilteredPlayers, setShowFilteredPlayers] = useState(false)
 
   useEffect(() => {
     fetchPlayers()
   }, [])
-
-  // const showSelectedPlayers = () => {
-  //   setShowFilteredPlayers(!showFilteredPlayers);
-  // }
-
-  // const filterPlayers = playersData?.players?.filter(item => {
-  //   return item.event_player_credit > 8.5;
-  // });
 
   return (
     <div>
@@ -40,7 +30,7 @@ function Players({ playersData, fetchPlayers }) {
             </h2>
           ) : (
             <div>
-              <table  border={1}>
+              <table border={1}>
                 <tr>
                   <th>ID</th>
                   <th>Player_ID</th>
@@ -69,26 +59,20 @@ function Players({ playersData, fetchPlayers }) {
                     </tr>
                   )
                 }
-
               </table>
               <Bowler />
               <Batsman />
               <AllRounders />
               <WicketKeeper />
-
-              <div style={{ marginBottom: 60 ,marginTop:80}}>
-                <Link to="/filteredPlayers" style={{textDecoration:"none", border:"1px solid gray",padding:15,borderRadius:10,fontSize:18,fontWeight:"bold",backgroundColor:"#3333"}}>Show the filtered players</Link>
+              <div style={{ marginBottom: 60, marginTop: 80 }}>
+                <Link to="/filteredPlayers" style={{ textDecoration: "none", border: "1px solid gray", padding: 15, borderRadius: 10, fontSize: 18, fontWeight: "bold", backgroundColor: "#3333" }}>Show the filtered players</Link>
               </div>
-
-           
             </div>
           )
         )
       }
     </div>
   )
-
-
 }
 
 const mapStateToProps = (state) => {
@@ -96,6 +80,7 @@ const mapStateToProps = (state) => {
     playersData: state
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPlayers: () => dispatch(fetchPlayers())
