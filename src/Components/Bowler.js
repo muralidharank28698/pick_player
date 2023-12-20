@@ -1,52 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Style.css"
-import store from "../appredux/store";
+import { bowler } from "../appredux/playerAction";
+import { useDispatch } from "react-redux";
 
-function Bowler() {
-
-  const storeData = store.getState()?.players;
-  const Bowler = storeData?.filter(item => {
-    return item.role === "Bowler";
-  });
+function Bowler({ Bowlers }) {
+  const dispatch = useDispatch()
+  const [data, setData] = useState([]);
+  const handleChange = async (player) => {
+    data.push(player);
+    await dispatch(bowler(data));
+  }
 
   return (
     <div>
-      <h1>List of Bowler</h1>
-      <div>
-        <table border={1}>
-          <tr>
-            <th>ID</th>
-            <th>Player_ID</th>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Role</th>
-            <th>Team_name</th>
-            <th>Team_Id</th>
-            <th>Short_Name</th>
-            <th>Event_player_credit</th>
-            <th>Event_total_points</th>
-          </tr>
-          {
-            Bowler && Bowler?.map((player) =>
-              <tr key={player.id}>
-                <td>{player?.id}</td>
-                <td>{player?.player_id}</td>
-                <td>{player?.name}</td>
-                <td>{player?.country}</td>
-                <td>{player?.role}</td>
-                <td>{player?.team_name}</td>
-                <td>{player?.team_id}</td>
-                <td>{player?.short_name}</td>
-                <td>{player?.event_player_credit}</td>
-                <td>{player?.event_total_points}</td>
-              </tr>
-            )
-          }
-        </table>
-      </div>
+      <table border={1}>
+        <tr>
+          <th>ID</th>
+          <th>Player_ID</th>
+          <th>Name</th>
+          <th>Country</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+        {
+          Bowlers && Bowlers?.map((player) =>
+            <tr key={player.id}>
+              <td>{player?.id}</td>
+              <td>{player?.player_id}</td>
+              <td>{player?.name}</td>
+              <td>{player?.country}</td>
+              <td>{player?.role}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  onChange={() => handleChange(player)}
+                />
+              </td>
+            </tr>
+          )
+        }
+      </table>
     </div>
   )
 }
-
 
 export default Bowler;

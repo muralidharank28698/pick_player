@@ -1,26 +1,112 @@
-table {
-    border-collapse: collapse;
-    margin: 40px auto;
-    width: 90%;
-  }
-   th {
-    background: #ccc;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background: #efefef;
-  }
-  
-  tr:hover {
-    background: #d1d1d1;
-  }
-
-  .btn {
-	padding: 20px;
-    font-size: 18px;
+.container {
+  width: 100%;
 }
+
+.content {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: auto;
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 60px;
+}
+
+.tableContainer .leftContainer {
+  padding: 10px;
+  width: 45%;
+}
+
+.tableContainer .leftContainer h3,
+.tableContainer .rightContainer h3 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.tableContainer .rightContainer {
+  width: 45%;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100% !important;
+}
+
+th {
+  background: #ccc;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background: #efefef;
+}
+
+tr:hover {
+  background: #d1d1d1;
+}
+
+.btn {
+  padding: 20px;
+  font-size: 18px;
+}
+
+/* header style */
+
+.header-fixed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px #ccc;
+  padding: 20px 40px;
+  height: 80px;
+  color: #ffffff;
+  box-sizing: border-box;
+  -webkit-transition: top 0.3s;
+  transition: top 0.3s;
+}
+
+.header-fixed .header-limiter {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.header-fixed .header-limiter h1 {
+  float: left;
+  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+  line-height: 40px;
+  margin: 0;
+}
+
+.header-fixed .header-limiter h1 span {
+  color: #5383d3;
+}
+
+.header-fixed .header-limiter a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* media query */
+
+@media screen and (max-width: 1100px) {
+  .tableContainer {
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  .tableContainer .leftContainer{
+    width: 100%;
+  }
+  .tableContainer .rightContainer{
+    width: 100%;
+  }
+}
+

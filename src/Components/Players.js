@@ -10,6 +10,7 @@ import Bowler from './Bowler';
 import Batsman from './Batsman';
 import AllRounders from './AllRounders';
 import WicketKeeper from "./WicketKeeper";
+import Header from "./Header";
 
 function Players({ playersData, fetchPlayers }) {
 
@@ -17,9 +18,24 @@ function Players({ playersData, fetchPlayers }) {
     fetchPlayers()
   }, [])
 
+  const batsmanData = playersData?.players?.filter(item => {
+    return item.role === "Batsman";
+  });
+
+  const bowlerData = playersData?.players?.filter(item => {
+    return item.role === "Bowler";
+  });
+
+  const allRoundersData = playersData?.players?.filter(item => {
+    return item.role === "All-Rounder";
+  });
+
+  const wicketKeeperData = playersData?.players?.filter(item => {
+    return item.role === "Wicket-Keeper";
+  });
+
   return (
-    <div>
-      <h1>List of players</h1>
+    <div className="container">
       {
         playersData?.loading ? (
           <h2>Loading....</h2>
@@ -29,48 +45,35 @@ function Players({ playersData, fetchPlayers }) {
               {playersData?.error}
             </h2>
           ) : (
-            <div>
-              <table border={1}>
-                <tr>
-                  <th>ID</th>
-                  <th>Player_ID</th>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>Role</th>
-                  <th>Team_name</th>
-                  <th>Team_Id</th>
-                  <th>Short_Name</th>
-                  <th>Event_player_credit</th>
-                  <th>Event_total_points</th>
-                </tr>
-                {
-                  playersData && playersData?.players && playersData?.players?.map((player) =>
-                    <tr key={player.id}>
-                      <td>{player?.id}</td>
-                      <td>{player?.player_id}</td>
-                      <td>{player?.name}</td>
-                      <td>{player?.country}</td>
-                      <td>{player?.role}</td>
-                      <td>{player?.team_name}</td>
-                      <td>{player?.team_id}</td>
-                      <td>{player?.short_name}</td>
-                      <td>{player?.event_player_credit}</td>
-                      <td>{player?.event_total_points}</td>
-                    </tr>
-                  )
-                }
-              </table>
-              <Bowler />
-              <Batsman />
-              <AllRounders />
-              <WicketKeeper />
-              <div style={{ marginBottom: 60, marginTop: 80 }}>
-                <Link to="/filteredPlayers" style={{ textDecoration: "none", border: "1px solid gray", padding: 15, borderRadius: 10, fontSize: 18, fontWeight: "bold", backgroundColor: "#3333" }}>Show the filtered players</Link>
+            <div className="content">
+              <div className="tableContainer">
+                <div className="leftContainer">
+                  <h3>Count [{bowlerData?.length}] : Pick 3-7 Bowler</h3>
+                  <Bowler Bowlers={bowlerData} />
+                </div>
+                <div className="rightContainer">
+                  <h3>Count [{batsmanData?.length}] : Pick 3-7 Batsman </h3>
+                  <Batsman Batsman={batsmanData} />
+                </div>
+              </div>
+              <div className="tableContainer">
+                <div className="leftContainer">
+                  <h3>Count [{allRoundersData?.length}] : Pick 0-4 All Rounders</h3>
+                  <AllRounders AllRounders={allRoundersData} />
+                </div>
+                <div className="rightContainer">
+                  <h3>Count [{wicketKeeperData?.length}] : Pick 1-5 WicketKeeper</h3>
+                  <WicketKeeper WicketKeeper={wicketKeeperData} />
+                </div>
               </div>
             </div>
           )
         )
       }
+
+      <div style={{ marginBottom: 60, marginTop: 80 }}>
+        <Link to="/filteredPlayers" style={{ textDecoration: "none", border: "1px solid gray", padding: 15, borderRadius: 10, fontSize: 18, fontWeight: "bold", backgroundColor: "#3333" }}>Proceed</Link>
+      </div>
     </div>
   )
 }
